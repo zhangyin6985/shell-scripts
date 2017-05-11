@@ -34,6 +34,7 @@ echo -e "\033[33m开始安装nginx:\033[0m"
 
 yum install -y nginx
 
+cp /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 sed -i '/root/a \    index index.php index.html;' /etc/nginx/conf.d/default.conf
 sed -i '/index/a \    location ~.*\.(php|php5)?$\n\    {\n\t fastcgi_pass 127.0.0.1:9000;\n\t fastcgi_index index.php;\n\t include fastcgi.conf;\n    }' /etc/nginx/conf.d/default.conf
 
@@ -57,6 +58,7 @@ echo -e "\033[33m开始安装php-fpm:\033[0m"
 
 yum install -y php-fpm
 
+cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.bak
 sed -i 's/user = apache/user = nginx/g' /etc/php-fpm.d/www.conf 
 sed -i 's/group = apache/group = nginx/g' /etc/php-fpm.d/www.conf
 
@@ -104,6 +106,7 @@ echo -e "\033[33m开始安装nginx:\033[0m"
 
 yum install -y nginx
 
+cp /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 sed -i '/^#/d' /etc/nginx/nginx.conf
 sed -ir '/root/a \\tindex index.php index.html;' /etc/nginx/nginx.conf
 sed -ir '/index/a \\tlocation ~.*\.(php|php5)?$\n\t{\n\t fastcgi_pass 127.0.0.1:9000;\n\t fastcgi_index index.php;\n\t include fastcgi.conf;\n\t}' /etc/nginx/nginx.conf
@@ -128,6 +131,7 @@ echo -e "\033[33m开始安装php-fpm:\033[0m"
 
 yum install -y php-fpm
 
+cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.bak
 sed -i 's/user = apache/user = nginx/g' /etc/php-fpm.d/www.conf 
 sed -i 's/group = apache/group = nginx/g' /etc/php-fpm.d/www.conf
 
